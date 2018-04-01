@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 
 @Component({
@@ -7,18 +7,13 @@ import { routerTransition } from '../../router.animations';
     styleUrls: ['./dashboard.component.scss'],
     animations: [routerTransition()]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
     notes = [
         {
-            type: "text"
-        }, {
-            type: "article"
-        }, {
-            type: "photo"
-        }, {
-            type: "doc"
+            name: "first note",
+            content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est animi quibusdam praesentium quam, et perspiciatis, consectetur velit culpa molestias dignissimos voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum"
         }
     ];
     showModal: Boolean = false;
@@ -67,10 +62,23 @@ export class DashboardComponent implements OnInit {
     ngOnInit() {
     }
 
+    ngAfterViewInit() {
+    }
+
     openCompose() {
         this.showModal = true;
     }
     closeCompose() {
+        this.showModal = false;
+    }
+
+    addNote() {
+        let name = (<HTMLInputElement>document.getElementById("noteName")).value;
+        let content = (<HTMLInputElement>document.getElementById("noteContent")).value;
+        this.notes.unshift({
+            name: name,
+            content: content
+        })
         this.showModal = false;
     }
 
