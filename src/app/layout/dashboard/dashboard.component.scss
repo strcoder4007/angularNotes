@@ -1,0 +1,51 @@
+.myModal {
+    height: 500px;
+    width: 370px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background-color: #222;
+    color: whitesmoke;
+    z-index: 1;
+}
+.inputName {
+    width: 100%;
+    height: 40px;
+    font-family: "open sans";
+    font-size: 1em;
+    background-color: transparent;
+    border: 0px solid;
+    border-bottom: 1px solid #333;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+.noteBtn {
+    border-radius: 0px;
+}
+
+.closeBtn {
+    height: 40px;
+    width: auto;
+}
+
+.myArea {
+    height: 420px;
+    width: 100%;
+    font-family: "open sans";
+    font-size: .9em;
+    background-color: transparent;
+    border: 0px solid;
+    color: whitesmoke;
+}
+
+.gutter-0.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+.gutter-0 > [class^="col-"]{
+    padding-right: 0;
+    padding-left: 0;
+}

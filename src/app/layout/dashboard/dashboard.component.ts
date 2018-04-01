@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
             type: "doc"
         }
     ];
+    showModal: Boolean = false;
 
     constructor() {
         this.sliders.push(
@@ -63,7 +64,15 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
+
+    openCompose() {
+        this.showModal = true;
+    }
+    closeCompose() {
+        this.showModal = false;
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);
