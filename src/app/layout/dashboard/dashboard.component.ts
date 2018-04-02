@@ -1,9 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import filestack from 'filestack-js';
-/*
-installed filestack and added the dependency above
-*/
+
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -21,7 +20,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     ];
     showModal: Boolean = false;
     apiKey: String = 'A9CFNM6bKS2qOfMvu8SSQz';
-    textAreaContent;
+    textAreaContent: string;
 
     constructor() {
         this.sliders.push(
@@ -71,6 +70,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     openCompose() {
+        this.textAreaContent = "";
         this.showModal = true;
     }
     closeCompose() {
@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     addNote() {
         let name = (<HTMLInputElement>document.getElementById("noteName")).value;
-        let content = (<HTMLInputElement>document.getElementById("noteContent")).innerText;
+        let content = document.getElementById("noteContent").innerHTML;
         if(name.length && content.length) {
             this.notes.unshift({
                 name: name,
@@ -97,9 +97,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }).then(function (result) {
             return result.filesUploaded[0].url;
         }).then(fileUrl => {
-            let x = document.getElementById("noteContent");
-            let t = document.createTextNode("<br><img style=\"padding: 5px\" class=\"col-xs-12\" src=\""+ fileUrl +"\" height=\"auto\" width=\"100%\"<br>/>");
-            x.appendChild(t);
+            document.getElementById("noteContent").innerHTML += "<img style=\"padding: 5px\" class=\"col-xs-12\" src=\""+ fileUrl +"\" height=\"auto\" width=\"100%\"/><br>";
+            this.textAreaContent = document.getElementById("noteContent").innerHTML;
         });
     }
 
