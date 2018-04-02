@@ -20,6 +20,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
     ];
     showModal: Boolean = false;
+    apiKey: String = 'A9CFNM6bKS2qOfMvu8SSQz';
+    textAreaContent;
 
     constructor() {
         this.sliders.push(
@@ -77,7 +79,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     addNote() {
         let name = (<HTMLInputElement>document.getElementById("noteName")).value;
-        let content = (<HTMLInputElement>document.getElementById("noteContent")).value;
+        let content = (<HTMLInputElement>document.getElementById("noteContent")).innerText;
         if(name.length && content.length) {
             this.notes.unshift({
                 name: name,
@@ -86,6 +88,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
         this.showModal = false;
     }
+
+    uploadPhotos() {
+        const client = filestack.init(this.apiKey);
+        client.pick({
+            accept: ['.jpg', '.png', '.svg'],
+            maxFiles: 1
+        }).then(function (result) {
+            return result.filesUploaded[0].url;
+        }).then(fileUrl => {
+            let x = document.getElementById("noteContent");
+            let t = document.createTextNode("<br><img style=\"padding: 5px\" class=\"col-xs-12\" src=\""+ fileUrl +"\" height=\"auto\" width=\"100%\"<br>/>");
+            x.appendChild(t);
+        });
+    }
+
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);

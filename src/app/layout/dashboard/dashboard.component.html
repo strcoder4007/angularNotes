@@ -21,7 +21,7 @@
         <hr>
         <div class="note">
                 <h5><b>{{note.name}}</b></h5>
-            <p>{{note.content}}</p>
+            <p [innerHTML]="note.content"></p>
         </div>
     </div>
     <div *ngIf="showModal" class="myModal">
@@ -34,13 +34,13 @@
             </div>
         </div> 
         <div class="row gutter-0">
-            <textarea type="text" placeholder="write note here..." class="myArea" id="noteContent"></textarea>
+            <div contenteditable="true" class="myArea" id="noteContent" [innerHTML]="textAreaContent"></div>
         </div>
         <div class="row gutter-0" style="border-top: 1px solid #333">
             <div class="col-md-2 addFile">
                 <i class="fa fa-paperclip"></i>
             </div>
-            <div class="col-md-2 addPhoto">
+            <div class="col-md-2 addPhoto"  (click)="uploadPhotos()">
                 <i class="fa fa-camera"></i>
             </div>
             <div class="col-md-8 addNote" (click)="addNote()">
