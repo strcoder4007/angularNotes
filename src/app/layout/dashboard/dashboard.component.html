@@ -16,7 +16,7 @@
     <hr>
     <button class="btn btn-primary noteBtn" (click)="openCompose()">create a note</button>
     <hr>
-    <h2 class="">Recent Notes:</h2>
+    <h3 class="">Recent Notes:</h3>
     <div *ngFor="let note of notes">
         <hr>
         <div class="note">
@@ -72,27 +72,17 @@
                 <div class="card-header">
                     <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
                 </div>
-                <!-- /.card-header -->
                 <app-timeline></app-timeline>
-                <!-- /.card-body -->
             </div>
-            <!-- /.card -->
         </div>
-        <!-- /.col-lg-8 -->
         <div class="col-lg-4">
             <div class="card card-default mb-3">
                 <div class="card-header">
                     <i class="fa fa-bell fa-fw"></i> Notifications card
                 </div>
-                <!-- /.card-header -->
                 <app-notification></app-notification>
-                <!-- /.card-body -->
             </div>
-            <!-- /.card -->
-
             <app-chat></app-chat>
-            <!-- /.card .chat-card -->
         </div>
-        <!-- /.col-lg-4 -->
     </div>
 </div>

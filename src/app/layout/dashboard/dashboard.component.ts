@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-
+import filestack from 'filestack-js';
+/*
+installed filestack and added the dependency above
+*/
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -12,8 +15,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     public sliders: Array<any> = [];
     notes = [
         {
-            name: "first note",
-            content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est animi quibusdam praesentium quam, et perspiciatis, consectetur velit culpa molestias dignissimos voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum"
+            name: "Default note",
+            content: "This is the default note. You can add new notes by clicking on the \"create a note\" button above. New notes will be added in this section."
         }
     ];
     showModal: Boolean = false;
@@ -75,10 +78,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     addNote() {
         let name = (<HTMLInputElement>document.getElementById("noteName")).value;
         let content = (<HTMLInputElement>document.getElementById("noteContent")).value;
-        this.notes.unshift({
-            name: name,
-            content: content
-        })
+        if(name.length && content.length) {
+            this.notes.unshift({
+                name: name,
+                content: content
+            })
+        }
         this.showModal = false;
     }
 
