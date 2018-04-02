@@ -1,19 +1,4 @@
 <div [@routerTransition]>
-    <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
-    <div class="row">
-        <div class="col-md-12">
-            <ngb-carousel>
-                <ng-template ngbSlide *ngFor="let slider of sliders">
-                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
-                    <div class="carousel-caption">
-                        <h3>{{slider.label}}</h3>
-                        <p>{{slider.text}}</p>
-                    </div>
-                </ng-template>
-            </ngb-carousel>
-        </div>
-    </div>
-    <hr>
     <button class="btn btn-primary noteBtn" (click)="openCompose()">create a note</button>
     <hr>
     <h3 class="">Recent Notes:</h3>
@@ -21,6 +6,7 @@
         <hr>
         <div class="note">
                 <h5><b>{{note.name}}</b></h5>
+                <small style="padding-left: 5px;" [innerHTML]="note.time"></small>
             <p [innerHTML]="note.content"></p>
         </div>
     </div>
@@ -37,7 +23,7 @@
             <div contenteditable="true" class="myArea" id="noteContent" [innerHTML]="textAreaContent"></div>
         </div>
         <div class="row gutter-0" style="border-top: 1px solid #333">
-            <div class="col-md-2 addFile">
+            <div class="col-md-2 addFile" (click)="uploadFiles()">
                 <i class="fa fa-paperclip"></i>
             </div>
             <div class="col-md-2 addPhoto"  (click)="uploadPhotos()">
@@ -46,6 +32,21 @@
             <div class="col-md-8 addNote" (click)="addNote()">
                     + add note
             </div>
+        </div>
+    </div>
+    <hr>
+    <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                    <div class="carousel-caption">
+                        <h3>{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
         </div>
     </div>
     <hr>
